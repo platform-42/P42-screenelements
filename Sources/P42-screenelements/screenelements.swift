@@ -47,7 +47,6 @@ public struct ContentHeader: View {
             if let info = info {
                 Text(info)
                     .font(.body)
-                    .multilineTextAlignment(.center)
                     .foregroundColor(.secondary)
                     .padding(.top, 8)
             }
