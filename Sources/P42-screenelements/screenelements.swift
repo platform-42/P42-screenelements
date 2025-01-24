@@ -36,6 +36,7 @@ public struct ContentHeader: View {
             Text(titleLabel)
                 .font(.title)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.center)
                 .padding(.bottom, 8)
 
             Image(systemName: logo)
