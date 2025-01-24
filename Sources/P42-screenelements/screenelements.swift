@@ -32,11 +32,11 @@ public struct ContentHeader: View {
     }
 
     public var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 10) {
             Text(titleLabel)
                 .font(.title)
                 .fontWeight(.bold)
-                .padding(.bottom, 8)
+                .padding(.bottom, 5)
 
             Image(systemName: logo)
                 .resizable()
@@ -48,7 +48,7 @@ public struct ContentHeader: View {
                 Text(info)
                     .font(.body)
                     .foregroundColor(.secondary)
-                    .padding(.top, 8)
+                    .padding(.top, 5)
             }
         }
         .frame(width: width)
