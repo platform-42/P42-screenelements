@@ -47,7 +47,7 @@ public struct ContentHeader: View {
             if let info = info {
                 Text(info)
                     .font(.body)
-                    .foregroundColor(.secondary)
+//                 .foregroundColor(.secondary)
                     .padding(.top, 5)
             }
         }
