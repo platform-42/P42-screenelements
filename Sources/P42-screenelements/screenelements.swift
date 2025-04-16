@@ -7,6 +7,65 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
+
+
+public struct ContentHeader: View {
+    public var titleLabel: String
+    public var logo: String
+    public var logoColor: Color
+    public var portraitSize: CGFloat
+    public var info: String? = nil
+    public var width: CGFloat
+    public var onLogoTap: (() -> Void)? = nil
+
+    public init(
+        titleLabel: String,
+        logo: String,
+        logoColor: Color = .primary,
+        portraitSize: CGFloat = 100,
+        info: String? = nil,
+        width: CGFloat = UIScreen.main.bounds.width * 0.8,
+        onLogoTap: (() -> Void)? = nil
+    ) {
+        self.titleLabel = titleLabel
+        self.logo = logo
+        self.logoColor = logoColor
+        self.portraitSize = portraitSize
+        self.info = info
+        self.width = width
+        self.onLogoTap = onLogoTap
+    }
+
+    public var body: some View {
+        VStack(spacing: 8) {
+            // Logo
+            Image(systemName: logo)
+                .resizable()
+                .scaledToFit()
+                .frame(width: portraitSize, height: portraitSize)
+                .foregroundColor(logoColor)
+                .onTapGesture {
+                    onLogoTap?()
+                }
+
+            // Title
+            Text(titleLabel)
+                .font(.title)
+                .bold()
+
+            // Optional info
+            if let info = info {
+                Text(info)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .frame(width: width)
+        .padding()
+    }
+}
+
+/*
 public struct ContentHeader: View {
     public var titleLabel: String
     public var logo: String
@@ -54,7 +113,7 @@ public struct ContentHeader: View {
         .padding()
     }
 }
-
+*/
 
 @available(iOS 13.0, *)
 public struct VScrollView<Content: View>: View {
