@@ -3,9 +3,6 @@
 import SwiftUI
 
 
-import SwiftUI
-
-
 @available(iOS 13.0, *)
 public struct ContentHeader: View {
     public var titleLabel: String
@@ -83,6 +80,41 @@ public struct VScrollView<Content: View>: View {
                     .frame(minHeight: axis == .vertical ? geometry.size.height : nil)
             }
         }
+    }
+}
+
+@available(iOS 13.0, *)
+public struct ButtonLabelWithImage: View {
+    public let buttonImageName: String
+    public let buttonTitle: String
+    public let buttonImageColor: Color
+    public let buttonLabelColor: Color
+    public let buttonBackgroundColor: Color
+
+    public init(
+        buttonImageName: String,
+        buttonTitle: String,
+        buttonImageColor: Color,
+        buttonLabelColor: Color,
+        buttonBackgroundColor: Color
+    ) {
+        self.buttonImageName = buttonImageName
+        self.buttonTitle = buttonTitle
+        self.buttonImageColor = buttonImageColor
+        self.buttonLabelColor = buttonLabelColor
+        self.buttonBackgroundColor = buttonBackgroundColor
+    }
+
+    public var body: some View {
+        HStack {
+            Image(systemName: buttonImageName)
+                .foregroundColor(buttonImageColor)
+            Text(buttonTitle)
+                .foregroundColor(buttonLabelColor)
+        }
+        .padding()
+        .background(buttonBackgroundColor)
+        .clipShape(Capsule())
     }
 }
 
