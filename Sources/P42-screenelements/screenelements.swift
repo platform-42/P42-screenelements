@@ -119,7 +119,7 @@ public struct ButtonLabelWithImage: View {
 }
 
 
-@available(iOS 15.0, *)
+@available(iOS 16.0, *)
 public struct StyledGroupBox<Content: View>: View {
     let title: String
     let icon: String
