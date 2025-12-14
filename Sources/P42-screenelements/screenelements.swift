@@ -123,35 +123,42 @@ public struct ButtonLabelWithImage: View {
 public struct StyledGroupBox<Content: View>: View {
     let title: String
     let icon: String
+    let tint: Color
+    let background: Color
+    let stroke: Color
     let content: Content
-    let colorManager: ColorManager  // <- injected
 
     public init(
         title: String,
         icon: String,
-        colorManager: ColorManager,
+        tint: Color,
+        background: Color,
+        stroke: Color,
         @ViewBuilder content: () -> Content
     ) {
         self.title = title
         self.icon = icon
-        self.colorManager = colorManager
+        self.tint = tint
+        self.background = background
+        self.stroke = stroke
         self.content = content()
     }
 
     public var body: some View {
         GroupBox(
             label: Label(title.uppercased(), systemImage: icon)
-                .foregroundColor(colorManager.tint)
+                .foregroundColor(tint)
                 .font(.headline)
                 .padding(.bottom, 5)
         ) {
             content
         }
         .frame(width: UIScreen.main.bounds.width * 0.8)
-        .backgroundStyle(colorManager.groupBoxBG)
+        .background(background)
         .overlay(
             RoundedRectangle(cornerRadius: 15)
-                .stroke(colorManager.stroke, lineWidth: 3)
+                .stroke(stroke, lineWidth: 3)
         )
     }
 }
+
