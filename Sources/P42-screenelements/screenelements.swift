@@ -154,8 +154,8 @@ public struct StyledGroupBox<Content: View>: View {
             content
         }
         .frame(width: UIScreen.main.bounds.width * 0.8)
-        .background(background)
-        .backgroundStyle(backgroundColor)
+//        .background(background)
+        .backgroundStyle(background)
         .overlay(
             RoundedRectangle(cornerRadius: 15)
                 .stroke(stroke, lineWidth: 3)
