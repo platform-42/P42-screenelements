@@ -119,7 +119,7 @@ public struct ButtonLabelWithImage: View {
 }
 
 
-@available(iOS 14.0, *)
+@available(iOS 15.0, *)
 public struct StyledGroupBox<Content: View>: View {
     let title: String
     let icon: String
@@ -155,6 +155,7 @@ public struct StyledGroupBox<Content: View>: View {
         }
         .frame(width: UIScreen.main.bounds.width * 0.8)
         .background(background)
+        .backgroundStyle(backgroundColor)
         .overlay(
             RoundedRectangle(cornerRadius: 15)
                 .stroke(stroke, lineWidth: 3)
