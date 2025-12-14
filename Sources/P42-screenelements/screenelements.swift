@@ -124,11 +124,17 @@ public struct StyledGroupBox<Content: View>: View {
     let title: String
     let icon: String
     let content: Content
-    @Environment(ColorManager.self) private var colorManager
+    let colorManager: ColorManager  // <- injected
 
-    public init(title: String, icon: String, @ViewBuilder content: () -> Content) {
+    public init(
+        title: String,
+        icon: String,
+        colorManager: ColorManager,
+        @ViewBuilder content: () -> Content
+    ) {
         self.title = title
         self.icon = icon
+        self.colorManager = colorManager
         self.content = content()
     }
 
