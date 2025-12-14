@@ -118,3 +118,34 @@ public struct ButtonLabelWithImage: View {
     }
 }
 
+
+@available(iOS 14.0, *)
+public struct StyledGroupBox<Content: View>: View {
+    let title: String
+    let icon: String
+    let content: Content
+    @Environment(ColorManager.self) private var colorManager
+
+    public init(title: String, icon: String, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.icon = icon
+        self.content = content()
+    }
+
+    public var body: some View {
+        GroupBox(
+            label: Label(title.uppercased(), systemImage: icon)
+                .foregroundColor(colorManager.tint)
+                .font(.headline)
+                .padding(.bottom, 5)
+        ) {
+            content
+        }
+        .frame(width: UIScreen.main.bounds.width * 0.8)
+        .backgroundStyle(colorManager.groupBoxBG)
+        .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(colorManager.stroke, lineWidth: 3)
+        )
+    }
+}
