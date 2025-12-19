@@ -6,6 +6,7 @@ import SwiftUI
 @available(iOS 13.0, *)
 public struct ContentHeader: View {
     public var titleLabel: String
+    public var titleFontWeight: Font.Weight
     public var logo: String
     public var logoColor: Color
     public var portraitSize: CGFloat
@@ -14,6 +15,7 @@ public struct ContentHeader: View {
     
     public init(
         titleLabel: String,
+        titleFontWeight: Font.Weight = .regular,
         logo: String,
         logoColor: Color = .primary,
         portraitSize: CGFloat = 100,
@@ -21,6 +23,7 @@ public struct ContentHeader: View {
         onLogoTap: (() -> Void)? = nil
     ) {
         self.titleLabel = titleLabel
+        self.titleFontWeight = titleFontWeight
         self.logo = logo
         self.logoColor = logoColor
         self.portraitSize = portraitSize
@@ -32,7 +35,7 @@ public struct ContentHeader: View {
         VStack(spacing: 10) {
             Text(titleLabel)
                 .font(.title)
-                .fontWeight(.bold)
+                .fontWeight(titleFontWeight)
                 .padding(.bottom, 5)
             
             if #available(macOS 11.0, *) {
