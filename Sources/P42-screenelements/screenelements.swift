@@ -3,7 +3,6 @@
 import SwiftUI
 
 
-@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct ContentHeader: View {
     public var titleLabel: String
@@ -60,7 +59,6 @@ public struct ContentHeader: View {
 }
 
 
-@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct VScrollView<Content: View>: View {
     private let axis: Axis.Set
@@ -86,7 +84,6 @@ public struct VScrollView<Content: View>: View {
     }
 }
 
-@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct ButtonLabelWithImage: View {
     public let buttonImageName: String
