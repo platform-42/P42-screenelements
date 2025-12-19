@@ -3,6 +3,7 @@
 import SwiftUI
 
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct ContentHeader: View {
     public var titleLabel: String
@@ -10,7 +11,6 @@ public struct ContentHeader: View {
     public var logoColor: Color
     public var portraitSize: CGFloat
     public var info: String? = nil
-    public var width: CGFloat
     public var onLogoTap: (() -> Void)? = nil
     
     public init(
@@ -19,7 +19,6 @@ public struct ContentHeader: View {
         logoColor: Color = .primary,
         portraitSize: CGFloat = 100,
         info: String? = nil,
-        width: CGFloat = UIScreen.main.bounds.width * 0.8,
         onLogoTap: (() -> Void)? = nil
     ) {
         self.titleLabel = titleLabel
@@ -27,7 +26,6 @@ public struct ContentHeader: View {
         self.logoColor = logoColor
         self.portraitSize = portraitSize
         self.info = info
-        self.width = width
         self.onLogoTap = onLogoTap
     }
     
@@ -38,26 +36,31 @@ public struct ContentHeader: View {
                 .fontWeight(.bold)
                 .padding(.bottom, 5)
             
-            Image(systemName: logo)
-                .resizable()
-                .scaledToFit()
-                .frame(width: portraitSize, height: portraitSize)
-                .foregroundColor(logoColor)
-                .onTapGesture {
-                    onLogoTap?()
-                }
+            if #available(macOS 11.0, *) {
+                Image(systemName: logo)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: portraitSize, height: portraitSize)
+                    .foregroundColor(logoColor)
+                    .onTapGesture {
+                        onLogoTap?()
+                    }
+            } else {
+                // Fallback on earlier versions
+            }
             if let info = info {
                 Text(info)
                     .font(.body)
                     .padding(.top, 20)
             }
         }
-        .frame(width: width)
+        .frame(maxWidth: .infinity)
         .padding()
     }
 }
 
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct VScrollView<Content: View>: View {
     private let axis: Axis.Set
@@ -83,6 +86,7 @@ public struct VScrollView<Content: View>: View {
     }
 }
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct ButtonLabelWithImage: View {
     public let buttonImageName: String
@@ -107,8 +111,12 @@ public struct ButtonLabelWithImage: View {
 
     public var body: some View {
         HStack {
-            Image(systemName: buttonImageName)
-                .foregroundColor(buttonImageColor)
+            if #available(macOS 11.0, *) {
+                Image(systemName: buttonImageName)
+                    .foregroundColor(buttonImageColor)
+            } else {
+                // Fallback on earlier versions
+            }
             Text(buttonTitle)
                 .foregroundColor(buttonLabelColor)
         }
@@ -153,8 +161,7 @@ public struct StyledGroupBox<Content: View>: View {
         ) {
             content
         }
-        .frame(width: UIScreen.main.bounds.width * 0.8)
-//        .background(background)
+        .frame(maxWidth: .infinity)
         .backgroundStyle(background)
         .overlay(
             RoundedRectangle(cornerRadius: 15)
