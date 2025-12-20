@@ -62,6 +62,26 @@ public struct ContentHeader: View {
 }
 
 
+@available(macOS 10.15, *)
+public struct PageScrollView<Content: View>: View {
+    private let content: () -> Content
+
+    public init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+
+    public var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                content()
+            }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .padding()
+        }
+    }
+}
+
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct VScrollView<Content: View>: View {
     private let axis: Axis.Set
@@ -87,6 +107,7 @@ public struct VScrollView<Content: View>: View {
     }
 }
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public struct ButtonLabelWithImage: View {
     public let buttonImageName: String
@@ -127,6 +148,7 @@ public struct ButtonLabelWithImage: View {
 }
 
 
+@available(macOS 10.15, *)
 @available(iOS 16.0, *)
 public struct StyledGroupBox<Content: View>: View {
     let title: String
