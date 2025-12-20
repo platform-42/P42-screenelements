@@ -125,7 +125,7 @@ public struct ButtonLabelWithImage: View {
 
 
 @available(macOS 10.15, *)
-public struct StyledGroupBox2<Content: View>: View {
+public struct StyledGroupBox<Content: View>: View {
     let title: String
     let icon: String
     let tint: Color
@@ -174,48 +174,4 @@ public struct StyledGroupBox2<Content: View>: View {
     }
 }
 
-
-@available(macOS 10.15, *)
-@available(iOS 16.0, *)
-public struct StyledGroupBox<Content: View>: View {
-    let title: String
-    let icon: String
-    let tint: Color
-    let background: Color
-    let stroke: Color
-    let content: Content
-
-    public init(
-        title: String,
-        icon: String,
-        tint: Color,
-        background: Color,
-        stroke: Color,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.title = title
-        self.icon = icon
-        self.tint = tint
-        self.background = background
-        self.stroke = stroke
-        self.content = content()
-    }
-
-    public var body: some View {
-        GroupBox(
-            label: Label(title.uppercased(), systemImage: icon)
-                .foregroundColor(tint)
-                .font(.headline)
-                .padding(.bottom, 5)
-        ) {
-            content
-        }
-        .frame(maxWidth: .infinity)
-        .backgroundStyle(background)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(stroke, lineWidth: 3)
-        )
-    }
-}
 
