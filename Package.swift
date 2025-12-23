@@ -6,7 +6,9 @@ import PackageDescription
 let package = Package(
     name: "P42-screenelements",
     platforms: [
-        .iOS(.v16) 
+        .iOS(.v16),
+        .watchOS(.v9),
+        .macOS(.v13)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
