@@ -72,7 +72,7 @@ public struct PageScrollView<Content: View>: View {
     }
 
     public var body: some View {
-        ScrollView {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
                 content()
             }
