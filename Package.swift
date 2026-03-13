@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "P42-screenelements",
+    name: "P42ScreenElements",
     platforms: [
         .iOS(.v17),
         .watchOS(.v10),
@@ -13,16 +13,13 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "P42-screenelements",
-            targets: ["P42-screenelements"]),
+            name: "P42ScreenElements",
+            targets: ["P42ScreenElements"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "P42-screenelements"),
-        .testTarget(
-            name: "P42-screenelementsTests",
-            dependencies: ["P42-screenelements"]),
+            name: "P42ScreenElements")
     ]
 )
